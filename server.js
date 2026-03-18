@@ -14,7 +14,15 @@ const app = express();
 const PORT = process.env.PORT || 4000; 
 
 dotEnv.config();
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    'http://localhost:4000',
+    'https://dentcare-frontend.vercel.app'  // Vercel URL 
+  ],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+  credentials: true
+}));
 
 app.use(express.json());
 app.use(bodyParser.json());
